@@ -2,10 +2,10 @@
     <div class="menu">
         <ul>
             <?php foreach ($main_menu as $link):
-                if($link['page'] == $title): ?>
-                    <li class="active"><a href="<?php echo $link['url'] ?>"><?php echo $link['page'] ?></a></li>
+                if($link['visible_name'] == $page['name']): ?>
+                    <li class="active"><a href="<?php echo $link['url'] ?>"><?php echo $link['visible_name'] ?></a></li>
                 <?php else: ?>
-                    <li class="an-center"><a href="<?php echo $link['url'] ?>"><?php echo $link['page'] ?></a></li>
+                    <li class="an-center"><a href="<?php echo $link['url'] ?>"><?php echo $link['visible_name'] ?></a></li>
                 <?php endif;
             endforeach; ?>
         </ul>

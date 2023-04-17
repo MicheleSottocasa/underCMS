@@ -1,29 +1,32 @@
 <?php
 
 namespace core;
+include_once 'class.dbManager.php';
 
 class menuManager
 {
-     private $main_menu;
+    private $main_menu;
     private $admin_menu;
+    private $conn;
 
     public function __construct(){
-        $this->main_menu = [
-            [
-                "page" => "Home",
-                "url" => "/"
-            ],
-            [
-                "page" => "About",
-                "url" => "/about"
-            ]
-        ];
-        $this->admin_menu = [
-            [
-                "page" => "admin-login",
-                "url" => "/under-admin"
-            ]
-        ];
+        $this->conn = new dbManager();
+
+        //Setting the main menu
+        $result = $this->conn->getConn()->query("SELECT * FROM menuAssociations WHERE menuID = 1");
+        if($result->num_rows >0){
+            while($row = $result->fetch_assoc()){
+                $this->main_menu[] = $row;
+            }
+        }
+
+        //Setting the admin menu
+        $result = $this->conn->getConn()->query("SELECT * FROM menuAssociations WHERE menuID = 2");
+        if($result->num_rows >0){
+            while($row = $result->fetch_assoc()){
+                $this->admin_menu[] = $row;
+            }
+        }
     }
 
     /**
@@ -42,14 +45,13 @@ class menuManager
         return $this->admin_menu;
     }
 
-    public function addPage($page, $url, $menuType){
+    public function addPageToMenu($visible_name, $url, $menuType){
         if($menuType == 'main')
-            array_push($this->main_menu, ["page" => $page, "url" => $url]);
+            return $this->conn->getConn()->query("INSERT INTO menuAssociations (visible_name, menuID, url) VALUES (".$visible_name.", 1,".$url);
         else if ($menuType == 'admin')
-            array_push($this->admin_menu, ["page" => $page, "url" => $url]);
+            return $this->conn->getConn()->query("INSERT INTO menuAssociations (visible_name, menuID, url) VALUES (".$visible_name.", 2,".$url);
         else
             return false;
-        return true;
     }
 
 }
