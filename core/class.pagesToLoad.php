@@ -8,8 +8,30 @@ class pagesToLoad
     private $adminPages;
 
     public function __construct(){
-        $this->pages = ["", "about"];
-        $this->adminPages = ["dashboard", "profile", "under-admin"];
+        $this->pages = [
+            [
+                "local-path" => "views/home.html",
+                "url" => ""
+            ],
+            [
+                "local-path" => "views/about.html",
+                "url" => "about"
+            ]
+        ];
+        $this->adminPages = [
+            [
+                "url" => "dashboard",
+                "local-path" => "views/admin/login.html"
+            ],
+            [
+                "url" => "profile",
+                "local-path" => "views/admin/login.html"
+            ],
+            [
+                "url" => "under-admin",
+                "local-path" => "views/admin/login.html"
+            ]
+        ];
     }
 
     /**

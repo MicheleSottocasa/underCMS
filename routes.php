@@ -14,7 +14,7 @@ $param = explode('?', $request);
 
 if(isset($pages))
     foreach ($pages as $page) {
-        $page = '/' . $page;
+        $page = '/' . $page['url'];
         if($param[0] == $page || $param[0] == "") {
                 require __DIR__ . '/components/home.php';
                 exit;
@@ -22,7 +22,7 @@ if(isset($pages))
     }
 if(isset($adminPages))
     foreach ($adminPages as $page){
-        $page = '/' . $page;
+        $page = '/' . $page['url'];
         if($param[0] == $page || $param[0] == "") {
                 require __DIR__ . '/components/adminHome.php';
                 exit;
