@@ -21,18 +21,7 @@ class pagesToLoad
             }
         }
 
-//      $this->pages = [
-//            [
-//                "local-path" => "views/home.html",
-//                "url" => ""
-//            ],
-//            [
-//                "local-path" => "views/about.html",
-//                "url" => "about"
-//            ]
-//        ];
-
-        //Setting the pages
+        //Setting the admin pages
         $result = $this->conn->getConn()->query("SELECT * FROM pages WHERE isAdmin = 1");
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -51,14 +40,12 @@ class pagesToLoad
     /**
      * @return array
      */
-    public
-    function getAdminPages()
+    public function getAdminPages()
     {
         return $this->adminPages;
     }
 
-    public
-    function addPage(Page $page)
+    public function addPage(Page $page)
     {
         array_push($this->pages, $page);
     }

@@ -4,7 +4,10 @@ ini_set('display_errors', '1');
 set_include_path(__DIR__);
 
 require_once 'core/class.pagesToLoad.php';
+require_once 'core/class.frontendDependencies.php';
 
+// Dependencies
+$dep = new \core\frontendDependencies();
 
 $p = new \core\pagesToLoad();
 $pages = $p->getPages();
@@ -16,22 +19,33 @@ $request = $_SERVER['REQUEST_URI'];
 
 $param = explode('?', $request);
 
-if(isset($pages))
+if(isset($pages)) {
     foreach ($pages as $page) {
-//        $page = '/' . $page['url'];
-        if($param[0] == $page['url'] || $param[0] == "") {
-                require __DIR__ . '/components/home.php';
-                exit;
+        if ($param[0] == $page['url'] || $param[0] == "") {
+            require __DIR__ . '/components/home.php';
+            exit;
         }
     }
-if(isset($adminPages))
+}
+if(isset($adminPages)){
     foreach ($adminPages as $page){
-//        $page = '/' . $page['url'];
         if($param[0] == $page['url'] || $param[0] == "") {
-                require __DIR__ . '/components/adminHome.php';
+                require __DIR__ . '/components/admin/home.php';
                 exit;
             }
     }
+}
 
-http_response_code(404);
-require __DIR__ . '/errors/404.php';
+switch ($param[0]){
+    case '/under-admin':
+        require 'views/admin/login.php';
+        break;
+    case '/dashboard':
+        require 'views/admin/dashboard.php';
+        break;
+    case '/settings':
+        require 'views/admin/settings.php';
+    default:
+        http_response_code(404);
+        require __DIR__ . '/errors/404.php';
+}
