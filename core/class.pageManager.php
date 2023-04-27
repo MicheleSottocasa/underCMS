@@ -3,7 +3,7 @@
 namespace core;
 require_once 'class.dbManager.php';
 
-class pagesToLoad
+class pageManager
 {
     private $pages;
     private $adminPages;
@@ -43,11 +43,6 @@ class pagesToLoad
     public function getAdminPages()
     {
         return $this->adminPages;
-    }
-
-    public function addPage(Page $page)
-    {
-        array_push($this->pages, $page);
     }
 
 

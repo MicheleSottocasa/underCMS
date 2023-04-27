@@ -20,7 +20,7 @@ private $fontAwesomeCSS;
      */
     public function getBootstrapCSS(): string
     {
-        return '<!-- BOOTSTRAP CSS -->\n'.$this->bootstrapCSS;
+        return '<!-- BOOTSTRAP CSS -->'.$this->bootstrapCSS;
     }
 
     /**
@@ -28,7 +28,7 @@ private $fontAwesomeCSS;
      */
     public function getBootstrapJS(): string
     {
-        return '<!-- BOOTSTRAP JS -->\n'.$this->bootstrapJS;
+        return '<!-- BOOTSTRAP JS -->'.$this->bootstrapJS;
     }
 
     /**
@@ -36,7 +36,7 @@ private $fontAwesomeCSS;
      */
     public function getBootstrap():string
     {
-        return '<!-- Bootstrap CSS&JS -->\n>'.$this->bootstrapCSS.'\n'.$this->bootstrapJS;
+        return '<!-- Bootstrap CSS&JS -->'.$this->bootstrapCSS.$this->bootstrapJS;
     }
 
     /**
@@ -44,7 +44,7 @@ private $fontAwesomeCSS;
      */
     public function getFontAwesomeCSS(): string
     {
-        return '<!-- FontAwesome CSS -->\n>'.$this->fontAwesomeCSS;
+        return '<!-- FontAwesome CSS -->'.$this->fontAwesomeCSS;
     }
 
     /**
@@ -52,6 +52,6 @@ private $fontAwesomeCSS;
      */
     public function getAll(): string
     {
-        return '<!-- CSS -->\n>'.$this->bootstrapCSS.'\n'.$this->fontAwesomeCSS.'\n <?-- SCRIPT -->\n'.$this->bootstrapJS;
+        return '<!-- CSS -->'.$this->bootstrapCSS.$this->fontAwesomeCSS.' <?-- SCRIPT -->'.$this->bootstrapJS;
     }
 }

@@ -21,7 +21,6 @@ if(isset($pages)){?>
             require_once 'core/class.menuManager.php';
             $menu_manager = new \core\menuManager();
             $main_menu = $menu_manager->getMainMenu();
-            $admin_menu = $menu_manager->getAdminMenu();
 
             include 'components/main-menu.php';
 

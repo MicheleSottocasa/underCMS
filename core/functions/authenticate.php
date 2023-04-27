@@ -44,7 +44,7 @@ if ($stmt = $conn->prepare('SELECT pssw FROM users WHERE userID = (SELECT id FRO
             $_SESSION['name'] = $reply['name'];
             $_SESSION['surname'] = $reply['surname'];
             $_SESSION['photo-path'] = $reply["photoPhat"];
-            header('Location: /dashboard');
+            header('Location: /under-admin/dashboard');
         } else {
             // Incorrect password
             header('Location: /under-admin?error=1&username='.$_POST['username']);
